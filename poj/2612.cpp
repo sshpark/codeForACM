@@ -79,6 +79,6 @@ int main()
 				cout << shi[i][j];
 			cout << endl;
 		}
-		
 	}
+	return 0;
 }
