@@ -6,7 +6,7 @@ using namespace std;
 #define ll long long 
 #define lson l, m, rt << 1
 #define rson m+1, r, rt << 1 | 1
-const int N = 110000;
+const int N = 1000000;
 ll SUM[N << 2];
 int lazy[N << 2];
 void pushUp(int rt)
