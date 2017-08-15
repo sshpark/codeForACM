@@ -22,28 +22,23 @@ typedef long long ll;
 typedef unsigned long long ull;
 #define ms(s) memset(s, 0, sizeof(s))
 const int inf = 0x3f3f3f3f;
-#define LOCAL
-char A[105], B[105];
-int a[105], b[105];
-
-void trans(char s[], char s1[])
+// #define LOCAL
+int fac(int n)
 {
-	int lens = strlen(s);
-	int lens_1 = strlen(s1);
-	for (int i = 0; i < lens; i++) 
-		a[i] = s[i] - '0';
-	for (int i = 0; i < lens_1; i++) 
-		b[i] = s1[i] - '0';
+	if (n == 0 || n == 1)
+		return 1;
+	return fac(n-1)*n;
 }
 
-void solve()
+double f(int n)
 {
-	int lena = strlen(A);
-	int lenb = strlen(B);
-	
+	if (n == 0)
+		return 1;
+	double ans = 1;
+	for (int i = 1; i <= n; i++)
+		ans += 1.0/fac(i);
+	return ans;
 }
-
-
 
 int main(int argc, char * argv[]) 
 {
@@ -52,12 +47,17 @@ int main(int argc, char * argv[])
 	//freopen("/Users/huangjiaming/Documents/Algorithm/oj/data.out", "w", stdout);
 	#endif
 
+	puts("n e");
+	puts("- -----------");
+	puts("0 1");
+	puts("1 2");
+	puts("2 2.5");
+	int n = 0;
+	double e = 0;
+	for (int i = 3; i <= 9; i++)
+		printf("%d %.9lf\n", i, f(i));
 
-	while (~scanf("%s %s", A, B))
-	{
-		trans(A, B);
-		solve();
-	}
+
 
     return 0;
 }

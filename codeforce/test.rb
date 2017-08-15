@@ -1,6 +1,9 @@
-a = gets.split
-if (a[0].to_i/a[1].to_i)%2 == 1
-	puts 'YES'
-else
-	puts 'NO'
+m = gets.to_i
+n = m*2
+r = 1
+i = n
+while i != m
+	r = r*i/(i-m)
+	i -= 1
 end
+puts r/(m+1)

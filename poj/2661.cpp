@@ -23,25 +23,6 @@ typedef unsigned long long ull;
 #define ms(s) memset(s, 0, sizeof(s))
 const int inf = 0x3f3f3f3f;
 #define LOCAL
-char A[105], B[105];
-int a[105], b[105];
-
-void trans(char s[], char s1[])
-{
-	int lens = strlen(s);
-	int lens_1 = strlen(s1);
-	for (int i = 0; i < lens; i++) 
-		a[i] = s[i] - '0';
-	for (int i = 0; i < lens_1; i++) 
-		b[i] = s1[i] - '0';
-}
-
-void solve()
-{
-	int lena = strlen(A);
-	int lenb = strlen(B);
-	
-}
 
 
 
@@ -52,11 +33,20 @@ int main(int argc, char * argv[])
 	//freopen("/Users/huangjiaming/Documents/Algorithm/oj/data.out", "w", stdout);
 	#endif
 
+	int n;
 
-	while (~scanf("%s %s", A, B))
+	while (~scanf("%d", &n) && n)
 	{
-		trans(A, B);
-		solve();
+		int bit = pow(2, (int)((n - 1960)/10.0+1.0)+1);
+		double f = log(2)*bit;
+		double sum = 0.0;
+		int a = 0;
+		while (sum <= f)
+		{
+			a++;
+			sum += log(a);
+		}
+		printf("%d\n", a-1);
 	}
 
     return 0;
