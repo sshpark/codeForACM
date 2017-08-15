@@ -23,27 +23,9 @@ typedef unsigned long long ull;
 #define ms(s) memset(s, 0, sizeof(s))
 const int inf = 0x3f3f3f3f;
 #define LOCAL
-char A[105], B[105];
-int a[105], b[105];
 
-void trans(char s[], char s1[])
-{
-	int lens = strlen(s);
-	int lens_1 = strlen(s1);
-	for (int i = 0; i < lens; i++) 
-		a[i] = s[i] - '0';
-	for (int i = 0; i < lens_1; i++) 
-		b[i] = s1[i] - '0';
-}
-
-void solve()
-{
-	int lena = strlen(A);
-	int lenb = strlen(B);
-	
-}
-
-
+char s[100005];
+int a[100005];
 
 int main(int argc, char * argv[]) 
 {
@@ -52,11 +34,45 @@ int main(int argc, char * argv[])
 	//freopen("/Users/huangjiaming/Documents/Algorithm/oj/data.out", "w", stdout);
 	#endif
 
-
-	while (~scanf("%s %s", A, B))
+	while (~scanf("%s", s))
 	{
-		trans(A, B);
-		solve();
+		ms(a);
+		if (s[0] == '1')
+			a[0] = 0;
+		else
+			a[0] = 1;
+		int len = strlen(s);
+		for (int i = 1; i < len; i++)
+		{
+			a[i] = 0;
+			if (s[i] == '0')
+				a[i] = a[i-1]+1;
+		}	
+		int cur = 0, maxa = -1;
+		for (int i = 0; i < len; i++)
+		{
+			if (a[i] == 0)
+			{
+				if (i==0)
+					cur = 1;
+				else
+					cur = 1+a[i-1];
+				int loc = 0, j;
+				for (j = i+1; j < len; j++)
+					if (a[j] != 0)
+						cur += 1;
+					else
+					{
+						loc = 1;
+						break;
+					}
+				i = j-1;
+				maxa = max(maxa, cur);
+				cur = 0;
+			}
+			
+		}
+		printf("%d\n", maxa);
 	}
 
     return 0;

@@ -24,7 +24,17 @@ typedef unsigned long long ull;
 const int inf = 0x3f3f3f3f;
 #define LOCAL
 
+void me()
+{
+	ios::sync_with_stdio(0);
+	ios_base::sync_with_stdio(0);
+	cin.tie(0), cout.tie(0);
+}
 
+bool cmp(pair<string, int> a, pair<string, int> b)
+{
+	return a.first < b.first;
+}
 
 int main(int argc, char * argv[]) 
 {
@@ -32,13 +42,19 @@ int main(int argc, char * argv[])
 	freopen("/Users/huangjiaming/Documents/Algorithm/oj/data.in", "r", stdin);
 	//freopen("/Users/huangjiaming/Documents/Algorithm/oj/data.out", "w", stdout);
 	#endif
+	me();
+	int n;
+	cin >> n;
+	vector<pair<string, int> > v(n);
 
-	ll a, b;
-
-	while (~scanf("%lld%lld", &a, &b))
+	for (int i = 0; i < n; i++)
 	{
-		printf("%lld\n", a*(b/__gcd(a, b)));
+		cin >> v[i].first;
+		v[i].second = i+1;
 	}
-
+	sort(v.begin(), v.end(), cmp);
+	for (int i = 0; i < n-1; i++)
+		cout << v[i].second << " ";
+	cout << v[n-1].second << endl;
     return 0;
 }

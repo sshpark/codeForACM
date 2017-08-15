@@ -23,27 +23,41 @@ typedef unsigned long long ull;
 #define ms(s) memset(s, 0, sizeof(s))
 const int inf = 0x3f3f3f3f;
 #define LOCAL
-char A[105], B[105];
-int a[105], b[105];
-
-void trans(char s[], char s1[])
+const int maxn = 50;
+int ans = 0;
+struct trie
 {
-	int lens = strlen(s);
-	int lens_1 = strlen(s1);
-	for (int i = 0; i < lens; i++) 
-		a[i] = s[i] - '0';
-	for (int i = 0; i < lens_1; i++) 
-		b[i] = s1[i] - '0';
-}
+	int num;
+	struct trie *next[maxn];
+	trie() {
+		num = 0;
+		for (int i = 0; i < maxn; i++)
+			next[i] = NULL;
+	}
+};
 
-void solve()
+struct trie *root = new trie();
+
+void insert(char *str)
 {
-	int lena = strlen(A);
-	int lenb = strlen(B);
-	
+	int len = strlen(str);
+	struct trie *p = root, *q;
+	for (int i = 0; i < len; i++)
+	{
+		int id;
+		if(str[i] >= 'a' && str[i] <= 'z') id = str[i] - 'a';
+        else if(str[i] >= '0' && str[i] <= '9')id = str[i]- '0' + 27;
+        else id = 39;
+		
+		if (p -> next[id] == NULL)
+		{
+			p -> next[id] = new trie();
+			if(id == 39 && i != 0) ans++;
+		}
+		p -> num++;
+		p = p -> next[id];
+	}
 }
-
-
 
 int main(int argc, char * argv[]) 
 {
@@ -52,11 +66,17 @@ int main(int argc, char * argv[])
 	//freopen("/Users/huangjiaming/Documents/Algorithm/oj/data.out", "w", stdout);
 	#endif
 
-
-	while (~scanf("%s %s", A, B))
+	int n;	
+	char str[1005], in[1005];
+	while (~scanf("%d", &n))
 	{
-		trans(A, B);
-		solve();
+
+		for (int i = 0; i < n; i++)
+		{
+			scanf("%s", str);
+			insert(str);
+		}
+		printf("%d\n", ans);
 	}
 
     return 0;

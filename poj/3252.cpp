@@ -23,27 +23,26 @@ typedef unsigned long long ull;
 #define ms(s) memset(s, 0, sizeof(s))
 const int inf = 0x3f3f3f3f;
 #define LOCAL
-char A[105], B[105];
-int a[105], b[105];
-
-void trans(char s[], char s1[])
+int a[50];
+int getBin(ll n)
 {
-	int lens = strlen(s);
-	int lens_1 = strlen(s1);
-	for (int i = 0; i < lens; i++) 
-		a[i] = s[i] - '0';
-	for (int i = 0; i < lens_1; i++) 
-		b[i] = s1[i] - '0';
-}
-
-void solve()
-{
-	int lena = strlen(A);
-	int lenb = strlen(B);
-	
+	int i = 0;
+	while(n)
+	{
+		a[i++] = n&1;
+		n = n/2;
+	}
+	return i;
 }
 
 
+int C(int n, int m)
+{
+	int ans = 1, end = n-m+1;
+	for (int i = n; i >= end; i--)
+		ans = ans*i/(m--);
+	return ans;
+}
 
 int main(int argc, char * argv[]) 
 {
@@ -52,12 +51,28 @@ int main(int argc, char * argv[])
 	//freopen("/Users/huangjiaming/Documents/Algorithm/oj/data.out", "w", stdout);
 	#endif
 
-
-	while (~scanf("%s %s", A, B))
+	int l, r;
+	
+	while (~scanf("%d %d", &l, &r))
 	{
-		trans(A, B);
-		solve();
+		int len = getBin(r);
+		int re = pow(2, len-1);
+		int one = 0, zero = 0;
+		for (int i = 0; i < len; i++)
+		{
+			if (a[i] == 1)
+				one++;
+			else
+			{
+				zero++;
+				
+			}
+		}
+
 	}
 
     return 0;
 }
+
+
+// 1110111001101011001010000000000

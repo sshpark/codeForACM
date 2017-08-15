@@ -23,27 +23,15 @@ typedef unsigned long long ull;
 #define ms(s) memset(s, 0, sizeof(s))
 const int inf = 0x3f3f3f3f;
 #define LOCAL
-char A[105], B[105];
-int a[105], b[105];
 
-void trans(char s[], char s1[])
+double c[15];
+
+void pre()
 {
-	int lens = strlen(s);
-	int lens_1 = strlen(s1);
-	for (int i = 0; i < lens; i++) 
-		a[i] = s[i] - '0';
-	for (int i = 0; i < lens_1; i++) 
-		b[i] = s1[i] - '0';
+	c[0] = c[1] = 1.0;
+	for (int i = 2; i < 15; i++)
+		c[i] = c[i-1]*i;
 }
-
-void solve()
-{
-	int lena = strlen(A);
-	int lenb = strlen(B);
-	
-}
-
-
 
 int main(int argc, char * argv[]) 
 {
@@ -52,12 +40,30 @@ int main(int argc, char * argv[])
 	//freopen("/Users/huangjiaming/Documents/Algorithm/oj/data.out", "w", stdout);
 	#endif
 
+	int n, m, num[15];
+	double a[15], b[15];
 
-	while (~scanf("%s %s", A, B))
+	pre();
+	while (~scanf("%d %d", &n, &m))
 	{
-		trans(A, B);
-		solve();
-	}
-
+		for (int i = 1; i <= n; i++)
+			scanf("%d", &num[i]);
+		for (int i = 0; i < 15; i++)
+			a[i] = b[i] = 0.0;
+		for (int i = 0; i <= num[1]; i++)
+			a[i] = 1.0/c[i];
+		for (int i = 2; i <= n; i++)
+		{
+			for (int j = 0; j <= m; j++)
+				for (int k = 0; k+j <= m && k <= num[i]; k++)
+					b[j+k] += a[j]/c[k];
+			for (int j = 0; j <= m; j++)
+			{
+				a[j] = b[j];
+				b[j] = 0;
+			}
+		}
+		printf("%.0lf\n", a[m]*c[m]);
+	}	
     return 0;
 }

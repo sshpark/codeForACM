@@ -22,26 +22,7 @@ typedef long long ll;
 typedef unsigned long long ull;
 #define ms(s) memset(s, 0, sizeof(s))
 const int inf = 0x3f3f3f3f;
-#define LOCAL
-char A[105], B[105];
-int a[105], b[105];
-
-void trans(char s[], char s1[])
-{
-	int lens = strlen(s);
-	int lens_1 = strlen(s1);
-	for (int i = 0; i < lens; i++) 
-		a[i] = s[i] - '0';
-	for (int i = 0; i < lens_1; i++) 
-		b[i] = s1[i] - '0';
-}
-
-void solve()
-{
-	int lena = strlen(A);
-	int lenb = strlen(B);
-	
-}
+// #define LOCAL
 
 
 
@@ -52,11 +33,15 @@ int main(int argc, char * argv[])
 	//freopen("/Users/huangjiaming/Documents/Algorithm/oj/data.out", "w", stdout);
 	#endif
 
+	int x1, x2, y1, y2, x, y;
 
-	while (~scanf("%s %s", A, B))
+	while (~scanf("%d%d%d%d", &x1, &y1, &x2, &y2))
 	{
-		trans(A, B);
-		solve();
+		scanf("%d%d", &x, &y);
+		if ((abs(x1-x2)%x == 0) && (abs(y1-y2)%y == 0) && (abs(x1-x2)/x%2 == abs(y1-y2)/y%2))
+			puts("YES");
+		else
+			puts("NO");
 	}
 
     return 0;
