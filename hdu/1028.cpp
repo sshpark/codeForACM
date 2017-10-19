@@ -29,7 +29,7 @@ const int inf = 0x3f3f3f3f;
 int main(int argc, char * argv[]) 
 {
 	#ifdef LOCAL
-	freopen("/Users/huangjiaming/Documents/Algorithm/oj/data.in", "r", stdin);
+	// freopen("/Users/huangjiaming/Documents/Algorithm/oj/data.in", "r", stdin);
 	//freopen("/Users/huangjiaming/Documents/Algorithm/oj/data.out", "w", stdout);
 	#endif
 
