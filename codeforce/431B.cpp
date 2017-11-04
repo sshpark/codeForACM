@@ -44,7 +44,6 @@ int main(int argc, char const *argv[])
             }
         }
         printf("Yes\n");
-        // puts("No");
     }
     else
         puts("No");

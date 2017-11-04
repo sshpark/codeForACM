@@ -1,20 +1,16 @@
-T = int(raw_input())
-def ok(a, b, c):
-    if a == 'C' and b == 'C' and c == 'C': return True;
-    if a == 'C' and b == 'P' and c == 'C': return True;
-    if a == 'C' and b == 'C' and c == 'P': return True;
-    return False;
-for _ in range(T):
-    n = int(raw_input())
-    vis = [0]*n;
-    str = raw_input()
-    ans = 0
-    for i in range(n-3):
-        if str[i] == 'C' and str[i+1] == 'C' and str[i+2] == 'P' and str[i+3] == 'C':
-            ans += 1
-            vis[i+1] = vis[i+2] = 1;
-    for i in range(n-2):
-        if ok(str[i], str[i+1], str[i+2]) and vis[i] == 0 and vis[i+1] == 0 and vis[i+2] == 0:
-            ans += 1;
-            break;
-    print ans
+# -*- coding: utf-8 -*-
+from __future__ import print_function
+n = int(raw_input())
+nsum = 0
+for i in range(1, 27):
+    pos = 100
+    for j in range(1, 101):
+        if nsum+j*(j-1)//2 > n:
+            pos = j-1
+            break
+    for j in range(1, pos+1):
+        print(chr(96+i), end='')
+    nsum += (pos*(pos-1))//2
+    if nsum == n:
+        break
+print()
