@@ -1,46 +1,31 @@
-#include <cstdio>
-#include <cstring>
-#include <cstdlib> 
- 
-const int MAXN = 200 + 10;
- 
-int n, mp[MAXN][MAXN], a[MAXN];
- 
-int cmp(const void *a, const void *b){
-    return (*(int *)a - *(int *)b);
+#include <iostream>
+#include <stdio.h>
+#include <algorithm>
+using namespace std;
+struct node {
+    int b, c;
+}temp[205];
+bool cmp(node a, node b) {
+    return a.b < b.b;
 }
- 
-int main(){
-    freopen("in.txt", "r", stdin);  
- 
-    int ans;
-    while(scanf("%d", &n) != EOF){
-        memset(a, 0, sizeof(a)); 
- 
-        for(int i=0; i<n; ++i){
-            for(int j=0; j<n; ++j){
-                scanf("%d", &mp[i][j]);
-                a[j] += mp[i][j]; 
-            }
+int main(int argc, char const *argv[])
+{
+    int n, a[205][205], sum = 0;
+    scanf("%d", &n);
+    for (int i = 0; i < n; i++)
+        for (int j = 0; j < n; j++) {
+            scanf("%d", &a[i][j]);
+            sum += a[i][j];
         }
- 
-        ans = 0; 
-        qsort(a, n, sizeof(a[0]), cmp);
- 
-        int i = 0;
-        while(i + 1 < n && a[i] < 0){
-            if( a[i+1] + a[i] < 0 ){
-                ans -= (a[i] + a[i+1]);
-            }else{
-                ans += (a[i] + a[i+1]);
-            }
-            i = i + 2;
-        }
-        for( ; i<n; ++i){
-            ans += a[i];
-        }
- 
-        printf("%d\n",  ans );
+    for (int i = 0; i < n; i++)
+        for (int j = 0; j < n; j++) {
+            temp[i].b += a[j][i];
+            temp[i].c += -a[j][i];
     }
+    sort(temp, temp+n, cmp);
+    for (int i = 1; i < n; i+=2)
+        if (temp[i].b+temp[i-1].b < temp[i].c+temp[i-1].c)
+            sum += temp[i].c+temp[i-1].c-temp[i].b-temp[i-1].b;
+    printf("%d\n", sum);
     return 0;
 }

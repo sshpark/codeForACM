@@ -1,16 +1,17 @@
-# -*- coding: utf-8 -*-
-from __future__ import print_function
-n = int(raw_input())
-nsum = 0
-for i in range(1, 27):
-    pos = 100
-    for j in range(1, 101):
-        if nsum+j*(j-1)//2 > n:
-            pos = j-1
-            break
-    for j in range(1, pos+1):
-        print(chr(96+i), end='')
-    nsum += (pos*(pos-1))//2
-    if nsum == n:
-        break
-print()
+#coding=utf-8
+from pygame.locals import *
+from sys import exit
+import pygame
+
+pygame.init()
+SCREEN_SIZE = (800, 600)
+# 设置游戏屏幕大小，以及颜色深度为32位
+screen = pygame.display.set_mode(SCREEN_SIZE, 0, 32)
+
+while True:
+    for event in pygame.event.get():
+        if event.type == QUIT:
+            pygame.quit()
+            exit()
+        print event
+    pygame.display.update()
