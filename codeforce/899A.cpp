@@ -4,15 +4,20 @@
 #include <stdio.h>
 using namespace std;
 #define ll long long
-int a[10005];
 int main(int argc, char const *argv[])
 {
-    int n, k;
-    double x;
-    cin >> n >> k;
+    int n, x, a, b;
+    cin >> n;
+    a = b = 0;
     for (int i = 0; i < n; i++) {
         cin >> x;
-        a[i] = x*100;
+        if (x == 1) a++;
+        else b++;
+    }
+    if (b > a)
+        printf("%d\n", a+(b-a)/6*2);
+    else if (b < a) {
+        printf("%d\n", b+(a-b)/3);
     }
     return 0;
 }

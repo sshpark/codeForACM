@@ -4,15 +4,11 @@
 #include <stdio.h>
 using namespace std;
 #define ll long long
-int a[10005];
+const int maxn = 400005;
+int f[maxn], 
 int main(int argc, char const *argv[])
 {
-    int n, k;
-    double x;
-    cin >> n >> k;
-    for (int i = 0; i < n; i++) {
-        cin >> x;
-        a[i] = x*100;
-    }
+    int n, m;
+
     return 0;
 }

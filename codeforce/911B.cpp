@@ -4,15 +4,13 @@
 #include <stdio.h>
 using namespace std;
 #define ll long long
-int a[10005];
 int main(int argc, char const *argv[])
 {
-    int n, k;
-    double x;
-    cin >> n >> k;
-    for (int i = 0; i < n; i++) {
-        cin >> x;
-        a[i] = x*100;
-    }
+    int n, a, b;
+    int maxa = -1;
+    cin >> n >> a >> b;
+    for (int i = 1; i < n; i++)
+        maxa = max(maxa, min(a/i, b/(n-i)));
+    printf("%d\n", maxa);
     return 0;
 }
