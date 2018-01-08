@@ -2,39 +2,44 @@
 #include <algorithm>
 #include <string.h>
 #include <stdio.h>
+#include <map>
 using namespace std;
 #define ll long long
 const int maxn = 100005;
-ll a[maxn], b[maxn], c[maxn];
-ll gcd(ll a, ll b)
-{
-    if(b == 0)
-        return a;
-    return gcd(b, a % b);
+map<int, int> mm;
+map<int, int>::iterator it;
+int a[maxn];
+void approximateNumber(int n){  
+    int i;
+    for(i=2;i*i<n;i++){  
+        if(n%i == 0){  
+            mm[i]++;  
+            mm[n/i]++;
+        }  
+    }
+    if(i*i == n) mm[i]++;
 }
 int main(int argc, char const *argv[])
 {
-    int n;
+    int n, x, flag = 0;
     cin >> n;
     for (int i = 0; i < n; i++) cin >> a[i];
-    for (int i = 0; i < n; i++) cin >> b[i];
-    int flag = 0;
-    for (int i = 0; i < n; i++)
-        if (a[i] != b[i]) {
-            flag = 1;
-            break;
-        }
-    if (!flag) return 0*printf("1\n");
     for (int i = 0; i < n; i++) {
-        c[i] = a[i]-b[i];
-        if (c[i] == 0) 
-            return 0*printf("-1\n");
+        cin >> x;
+        a[i] -= x;
+        if (a[i] < 0) flag = 1;
+    }
+    if (flag) printf("-1\n");
+    else {
+        for (int i = 0; i < n; i++)
+            approximateNumber(a[i]);
+        it = mm.begin();
+        while (it != mm.end()) {
+            if (it->second == n) return 0*printf("%d\n", it->first);
+            it++;
+        }
+        printf("-1\n");
     }
 
-    ll ans = c[0];
-    for (int i = 1; i < n; i++)
-        ans = gcd(ans, c[i]);
-    if (ans == 0 || ans == 1 || ans < 0) printf("-1\n");
-    else printf("%lld\n", ans);
     return 0;
 }
