@@ -1,47 +1,56 @@
 #include <iostream>
+#include <math.h>
+#include <vector>
 #include <algorithm>
 #include <string.h>
 #include <stdio.h>
 using namespace std;
 #define ll long long
-const int maxn = 1005;
-struct node {
-    int s, t;
-}a[maxn*maxn];
-ll c[maxn];
-inline bool cmp(node a, node b) {
-    if (a.t == b.t) return a.s > b.s;
-    return a.t > b.t;
-}
-inline int lowbit(int x) {
-    return x & (-x);
-}
-inline void add(int x, int val) {
-    for (int i = x; i < maxn; i += lowbit(i))
-        c[i] += val;
-}
-inline ll getsum(int x) {
-    ll ans = 0;
-    for (int i = x; i; i -= lowbit(i))
-        ans += c[i];
-    return ans;
+const int maxn = 100005;
+vector<int> p[maxn];
+int vis[maxn], nodes;
+void dfs(int u) {
+    vis[u] = 1;
+    nodes++;
+    for (auto i : p[u]) {
+        if (!vis[i]) {
+            dfs(i);
+        }
+    }
+
 }
 int main(int argc, char const *argv[])
 {
-    int T, n, m, k, u, v;
-    scanf("%d", &T);
-    for (int t = 1; t <= T; t++) {
-        memset(c, 0, sizeof c);
-        scanf("%d %d %d", &n, &m, &k);
-        for (int i = 0; i < k; i++)
-            scanf("%d %d", &a[i].s, &a[i].t);
-        sort(a, a+k, cmp);
-        ll sum = 0;
-        for (int i = 0; i < k; i++) {
-            sum += getsum(a[i].s-1);
-            add(a[i].s, 1);
-        }
-        printf("Test case %d: %lld\n", t, sum);
+    printf("%lf\n", pow(9, 9));
+    int n, m, u, v;
+    memset(vis, 0, sizeof vis);
+    cin >> n >> m;
+    while (m--) {
+        cin >> u >> v;
+        p[u].push_back(v);
+        p[v].push_back(u);
     }
+    vector<int> ans;
+    for (int i = 0; i < n; i++) {
+        if (!vis[i]) {
+            nodes = 0;
+            dfs(i);
+            ans.push_back(nodes);
+        }
+    }
+    ll ans1 = (ll)n*(n-1)/2, ans2 = 0;
+    for (vector<int>::iterator it = ans.begin(); it != ans.end(); it++) {
+        ans2 += (*it)*((*it)-1)/2;
+    }
+    printf("%lld\n", ans1-ans2);
+
+    // 另一种计算方法
+    // int len = (int)ans.size();
+    // ll ans1 = 0, ans2 = 0;
+    // for (auto i : ans) {
+    //     ans1 += r*i;
+    //     ans2 += i;
+    // }
+    // printf("%lld\n", ans1);
     return 0;
 }

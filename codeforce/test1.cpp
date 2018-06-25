@@ -1,39 +1,24 @@
 #include <iostream>
 #include <algorithm>
+#include <string.h>
+#include <stdio.h>
 using namespace std;
-
-int dp[350][350], a[350][350];
-int ans=-1;
-int n,m,K;
-typedef long long LL;
-
-int main()
+#define ll long long
+const int maxn = 100005;
+int a[maxn];
+int main(int argc, char const *argv[])
 {
-
-    cin >> n>>m>>K;
-    for (int i = 1; i <= n; i++)
-    {
-        dp[i][0]=0;
-        for (int j = 1; j <= m; j++)
-        {
-            cin >> a[i][j];
-            dp[i][j]=dp[i][j-1]+a[i][j];
-        }
-    }
-
-    for(int i=1;i<=n;++i){
-        for(int j=i;j<=n;++j){
-            LL aa=0;
-            for(int k=1,l=1;k<=n;++k){
-                aa+=dp[k][j]-dp[k][i-1];
-                while(aa>K){
-                    aa-=dp[l][j]-dp[l][i-1];
-                    ++l;
-                }
-                ans=max(ans,(j-i+1)*(k-l+1));
-            }
-        }
-    }
-
-    cout << ans << endl;
+    int n, k;
+    bool first = true;
+    cin >> n >> k;
+    for (int i = 0; i < n; i++) cin >> a[i];
+    for (int i = k; i < n; i++)
+        if (first) {
+            printf("%d", a[i]);
+            first = false;
+        } else printf(" %d", a[i]);
+    for (int i = 0; i < k; i++)
+        printf(" %d", a[i]);
+    printf("\n");
+    return 0;
 }
