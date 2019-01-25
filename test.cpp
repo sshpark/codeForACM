@@ -1,120 +1,89 @@
-#include <cmath>
-#include <cstdio>
-#include <vector>
-#include <iostream>
-#include <algorithm>
-#include <cstring>
-#include <climits>
-#include <set>
-#include <map>
+#include<cstdio>
+#include<cmath>
+#include<algorithm>
+#define eps 1e-8
+#define max(x,y) (((x)>(y))?(x):(y))
 using namespace std;
-
-typedef long long ll;
-
-int n, m, q;
-const int mycount = 100005;
-int a[mycount];
-int h[mycount];
-int l[mycount];
-vector<int> game[mycount];
-int qu[mycount], qv[mycount];
-int parent[mycount];
-
-int getparent(int i) {
-    if (i == parent[i])
-        return i;
-    parent[i] = getparent(parent[i]);
-    return parent[i];
+int n,top;
+struct point
+{
+    double x,y;
+}p[50000+16],stack[10000];
+bool equal(double n)
+{
+    return fabs(n-0)<eps;
 }
-
-vector<int> queryArray[mycount];
-void reinitQuery() {
-    int i, j;
-    
-    for (i = 1; i <= n; i++)
-        parent[i] = i;
-    
-    for (i = 1; i <= q; i++) {
-        queryArray[i].clear();
+double cp(const point p1,const point p2,const point p0)
+{
+    return (p1.x-p0.x)*(p2.y-p0.y)-(p1.y-p0.y)*(p2.x-p0.x);
+}
+double dis(const point p1,const point p2)
+{
+    return sqrt((p1.x-p2.x)*(p1.x-p2.x)+(p1.y-p2.y)*(p1.y-p2.y));
+}
+bool cmp(const point p1,const point p2)
+{
+    double res=cp(p1,p2,p[0]);
+    if(equal(res))
+        return dis(p[0],p1)-dis(p[0],p2)<=0;
+    else
+        return res>0;
+}
+double rotate_calipers(int num)
+{
+    int p=1,q=2,i;
+    double ans=0;
+    stack[++num]=stack[0];
+    for(i=0;i<num;i++)
+    {
+        while(cp(stack[i],stack[p],stack[q+1])>cp(stack[i],stack[p],stack[q]))
+            q=(q+1)%num;
+        ans=max(ans,cp(stack[i],stack[p],stack[q])/2.0);
+        while(cp(stack[i],stack[p+1],stack[q])>cp(stack[i],stack[p],stack[q]))
+            p=(p+1)%num;
+        ans=max(ans,cp(stack[i],stack[p],stack[q])/2.0);
     }
-    
-    for (i = 1; i <= m; i++) {
-        if (l[i] <= h[i]) {
-            int mid = (l[i] + h[i]) >> 1;
-            queryArray[mid].push_back(i);
-        }
-    }
+    return ans;
 }
-
-void merge(int i, int j) {
-    parent[getparent(i)] = getparent(j);
-}
-
-bool verify(int gameno) {
-    int i, j, p;
-    
-    j = game[gameno][0];
-    p = getparent(j);
-    for (i = 1; i < game[gameno].size() && p == getparent(game[gameno][i]); i++);
-    if (i == game[gameno].size())
-        return true;
-    return false;
-}
-
-void process() {
-    int i, j, k, v, c;
-    
-    
-    for (int t = 0; t < 20; t++) {
-        reinitQuery();
-        // cout<<"t = "<<t<<endl;
-        for (i = 0; i <= q; i++) {
-            for (j = 0; j < queryArray[i].size(); j++) {
-                k = queryArray[i][j];
-                
-                if (verify(k)) {
-                    h[k] = i;
-                } else {
-                    l[k] = i + 1;
+int main()
+{
+    int i,pos;
+    double res=0;
+    while(~scanf("%d",&n))
+    {
+        if(n==-1)
+            break;
+        for(i=0;i<n;i++)
+            scanf("%lf%lf",&p[i].x,&p[i].y);
+        pos=0;
+        for(i=1;i<n;i++)
+        {
+            if(p[pos].y>=p[i].y)
+            {
+                if(p[pos].y==p[i].y)
+                {
+                    if(p[pos].x>p[i].x)
+                        pos=i;
                 }
+                else
+                    pos=i;
             }
-            
-            if (i < q)
-                merge(qu[i], qv[i]);
-            
         }
+        point temp;
+        temp=p[pos];
+        p[pos]=p[0];
+        p[0]=temp;
+        sort(p+1,p+n,cmp);
+        top=1;
+        stack[0]=p[0];
+        stack[1]=p[1];
+        for(i=2;i<n;i++)
+        {
+            while(cp(stack[top],p[i],stack[top-1])<0)
+                top--;
+            stack[++top]=p[i];
+        }
+        printf("%.2lf\n",rotate_calipers(top));
     }
-    for (i = 1; i <= m; i++) {
-        if (l[i] == q + 1) {
-            printf("-1\n");
-            
-        } else {
-            printf("%d\n", l[i]);
-        }
-    }
-}
-
-int main() {
-    int i, j, k;
-    while (~scanf("%d %d %d", &n, &m, &q)) {
-        for (int i = 0; i < n; i++) {
-            game[i].clear();
-        }
-        for (i = 1; i <= n; i++) {
-            scanf("%d", &j);
-            game[j].push_back(i);   
-        }
-        
-        for (i = 0; i < q; i++) {
-            scanf("%d %d", &qu[i], &qv[i]);
-        }
-        
-        for (i = 1; i <= m; i++) {
-            h[i] = q;
-            l[i] = 0;
-        }
-        process();
-    }
-    
     return 0;
 }
