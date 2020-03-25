@@ -19,6 +19,7 @@
 | 17 | [letter-combinations-of-a-phone-number](https://leetcode.com/problems/letter-combinations-of-a-phone-number/description/) | [Kotlin](./medium/17.letter-combinations-of-a-phone-number.kt) | Medium |
 | 18 | [4-sum](https://leetcode.com/problems/4-sum/description/) | [Kotlin](./medium/18.4-sum.kt) | Medium |
 | 19 | [remove-nth-node-from-end-of-list](https://leetcode.com/problems/remove-nth-node-from-end-of-list/description/) | [Kotlin](./medium/19.remove-nth-node-from-end-of-list.kt) | Medium |
+| 20 | [valid-parentheses](https://leetcode.com/problems/valid-parentheses/description/) | [Kotlin](./easy/20.valid-parentheses.kt) | Easy |
 | 22 | [generate-parentheses](https://leetcode.com/problems/generate-parentheses/description/) | [Kotlin](./medium/22.generate-parentheses.kt) | Medium |
 | 24 | [swap-nodes-in-pairs](https://leetcode.com/problems/swap-nodes-in-pairs/description/) | [Kotlin](./medium/24.swap-nodes-in-pairs.kt) | Medium |
 | 26 | [remove-duplicates-from-sorted-array](https://leetcode.com/problems/remove-duplicates-from-sorted-array/description/) | [Kotlin](./easy/26.remove-duplicates-from-sorted-array.kt) | Easy |
@@ -27,7 +28,7 @@
 | 29 | [divide-two-integers](https://leetcode.com/problems/divide-two-integers/description/) | [Kotlin](./medium/29.divide-two-integers.kt) | Medium |
 | 31 | [next-permutation](https://leetcode.com/problems/next-permutation/description/) | [Kotlin](./medium/31.next-permutation.kt) | Medium |
 | 32 | [longest-valid-parentheses](https://leetcode.com/problems/longest-valid-parentheses/description/) | [Kotlin](./hard/32.longest-valid-parentheses.kt) | Hard |
-| 33 | [search-in-rotated-sorted-array](https://leetcode.com/problems/search-in-rotated-sorted-array/description/) | [C++](./medium/33.search-in-rotated-sorted-array.cpp) | Medium |
+| 33 | [search-in-rotated-sorted-array.](https://leetcode.com/problems/search-in-rotated-sorted-array./description/) | [C++](./medium/33.search-in-rotated-sorted-array.cpp) | Medium |
 | 34 | [find-first-and-last-position-of-element-in-sorted-array](https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array/description/) | [Kotlin](./medium/34.find-first-and-last-position-of-element-in-sorted-array.kt) | Medium |
 | 38 | [count-and-say](https://leetcode.com/problems/count-and-say/description/) | [Kotlin](./easy/38.count-and-say.kt) | Easy |
 | 44 | [wildcard-matching](https://leetcode.com/problems/wildcard-matching/description/) | [Kotlin](./hard/44.wildcard-matching.kt) | Hard |
@@ -77,3 +78,14 @@
 | 999 | [available-captures-for-rook](https://leetcode.com/problems/available-captures-for-rook/description/) | [Kotlin](./easy/999.available-captures-for-rook.kt) | Easy |
 | 1038 | [binary-search-tree-to-greater-sum-tree](https://leetcode.com/problems/binary-search-tree-to-greater-sum-tree/description/) | [Kotlin](./medium/1038.binary-search-tree-to-greater-sum-tree.kt) | Medium |
 | 1305 | [all-elements-in-two-binary-search-trees](https://leetcode.com/problems/all-elements-in-two-binary-search-trees/description/) | [Kotlin](./medium/1305.all-elements-in-two-binary-search-trees.kt) | Medium |
+| 1306 | [jump-game-iii](https://leetcode.com/problems/jump-game-iii/description/) | [Kotlin](./medium/1306.jump-game-iii.kt) | Medium |
+| 1309 | [decrypt-string-from-alphabet-to-integer-mapping](https://leetcode.com/problems/decrypt-string-from-alphabet-to-integer-mapping/description/) | [Kotlin](./easy/1309.decrypt-string-from-alphabet-to-integer-mapping.kt) | Easy |
+| 1362 | [closest-divisors](https://leetcode.com/problems/closest-divisors/description/) | [Kotlin](./medium/1362.closest-divisors.kt) | Medium |
+| 1370 | [increasing-decreasing-string](https://leetcode.com/problems/increasing-decreasing-string/description/) | [Kotlin](./easy/1370.increasing-decreasing-string.kt) | Easy |
+| 1374 | [generate-a-string-with-characters-that-have-odd-counts](https://leetcode.com/problems/generate-a-string-with-characters-that-have-odd-counts/description/) | [Kotlin](./easy/1374.generate-a-string-with-characters-that-have-odd-counts.kt) | Easy |
+| 1375 | [bulb-switcher-iii](https://leetcode.com/problems/bulb-switcher-iii/description/) | [Kotlin](./medium/1375.bulb-switcher-iii.kt) | Medium |
+| 1376 | [time-needed-to-inform-all-employees](https://leetcode.com/problems/time-needed-to-inform-all-employees/description/) | [Kotlin](./medium/1376.time-needed-to-inform-all-employees.kt) | Medium |
+| 1377 | [frog-position-after-t-seconds](https://leetcode.com/problems/frog-position-after-t-seconds/description/) | [Kotlin](./hard/1377.frog-position-after-t-seconds.kt) | Hard |
+| 1380 | [lucky-numbers-in-a-matrix](https://leetcode.com/problems/lucky-numbers-in-a-matrix/description/) | [Kotlin](./easy/1380.lucky-numbers-in-a-matrix.kt) | Easy |
+| 1381 | [design-a-stack-with-increment-operation](https://leetcode.com/problems/design-a-stack-with-increment-operation/description/) | [Kotlin](./medium/1381.design-a-stack-with-increment-operation.kt) | Medium |
+| 1382 | [balance-a-binary-search-tree](https://leetcode.com/problems/balance-a-binary-search-tree/description/) | [Kotlin](./medium/1382.balance-a-binary-search-tree.kt) | Medium |
